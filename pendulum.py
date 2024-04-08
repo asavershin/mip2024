@@ -72,7 +72,7 @@ def symplectic_euler(func, x0, t):
     for i in range(1, len(t)):
         h = t[i] - t[i - 1]
         q_prev, p_prev = x[i - 1]
-        p_next = p_prev - h * g / L * np.sin(q_prev)
+        p_next = p_prev + h * func([q_prev, p_prev])[1]
         q_next = q_prev + h * p_next
         x[i] = [q_next, p_next]
     return x
